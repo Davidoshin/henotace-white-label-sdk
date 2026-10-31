@@ -1,0 +1,18 @@
+{
+  "name": "example-01-quickstart-node",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tracklr SDK Quickstart in Node.js & TypeScript",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node dist/index.js"
+  },
+  "dependencies": {
+    "@tracklr/sdk": "file:../../packages/tracklr-sdk"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.5.0"
+  }
+}

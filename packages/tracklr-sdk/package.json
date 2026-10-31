@@ -1,0 +1,25 @@
+{
+  "name": "@tracklr/sdk",
+  "version": "1.0.0",
+  "description": "Unified TypeScript API Client SDK for Tracklr Business Suite",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "keywords": [
+    "tracklr",
+    "sdk",
+    "business",
+    "api"
+  ],
+  "author": "Tracklr",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}

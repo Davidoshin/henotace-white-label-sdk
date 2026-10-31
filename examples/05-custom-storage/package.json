@@ -1,0 +1,18 @@
+{
+  "name": "example-05-custom-storage",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Custom Storage Adapter implementation for @tracklr/sdk",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node dist/index.js"
+  },
+  "dependencies": {
+    "@tracklr/sdk": "file:../../packages/tracklr-sdk"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.5.0"
+  }
+}

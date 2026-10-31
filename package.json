@@ -1,0 +1,20 @@
+{
+  "name": "henotace-white-label-sdk",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Unified TypeScript SDK, Docusaurus Documentation Portal, and Real-World Usage Examples for Henotace & Tracklr White-Label Business Suite",
+  "workspaces": [
+    "packages/*",
+    "docs",
+    "examples/*"
+  ],
+  "scripts": {
+    "build:sdk": "npm run build --workspace=@tracklr/sdk",
+    "build:docs": "npm run build --workspace=docs",
+    "dev:docs": "npm run start --workspace=docs",
+    "build": "npm run build:sdk && npm run build:docs"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}
