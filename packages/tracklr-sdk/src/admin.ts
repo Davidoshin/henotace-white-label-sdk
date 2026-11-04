@@ -476,6 +476,33 @@ export class AdminProfessionalServicesSubmodule {
   }
 }
 
+export class AdminEmailVerificationSubmodule {
+  constructor(private http: HttpClient) {}
+
+  public async list(params: Record<string, unknown> = {}): Promise<any> {
+    const q = new URLSearchParams();
+    Object.entries(params).forEach(([k, v]) => {
+      if (v !== undefined && v !== null && v !== '') {
+        q.append(k, String(v));
+      }
+    });
+    const qs = q.toString();
+    return await this.http.get<any>(`admin/email-verifications/${qs ? `?${qs}` : ''}`);
+  }
+
+  public async manualVerify(userId: number | string): Promise<any> {
+    return await this.http.post<any>('admin/email-verifications/manual-verify/', { user_id: userId });
+  }
+
+  public async resendOtp(userId: number | string): Promise<any> {
+    return await this.http.post<any>('admin/email-verifications/resend-otp/', { user_id: userId });
+  }
+
+  public async generateDirectLink(userId: number | string): Promise<any> {
+    return await this.http.post<any>('admin/email-verifications/generate-direct-link/', { user_id: userId });
+  }
+}
+
 export class AdminModule {
   public customerErrors: AdminCustomerErrorsSubmodule;
   public delivery: AdminDeliverySubmodule;
@@ -538,30 +565,4 @@ export class AdminModule {
   }
 }
 
-export class AdminEmailVerificationSubmodule {
-  constructor(private http: HttpClient) {}
-
-  public async list(params: Record<string, unknown> = {}): Promise<any> {
-    const q = new URLSearchParams();
-    Object.entries(params).forEach(([k, v]) => {
-      if (v !== undefined && v !== null && v !== '') {
-        q.append(k, String(v));
-      }
-    });
-    const qs = q.toString();
-    return await this.http.get<any>(`admin/email-verifications/${qs ? `?${qs}` : ''}`);
-  }
-
-  public async manualVerify(userId: number | string): Promise<any> {
-    return await this.http.post<any>('admin/email-verifications/manual-verify/', { user_id: userId });
-  }
-
-  public async resendOtp(userId: number | string): Promise<any> {
-    return await this.http.post<any>('admin/email-verifications/resend-otp/', { user_id: userId });
-  }
-
-  public async generateDirectLink(userId: number | string): Promise<any> {
-    return await this.http.post<any>('admin/email-verifications/generate-direct-link/', { user_id: userId });
-  }
-}
 

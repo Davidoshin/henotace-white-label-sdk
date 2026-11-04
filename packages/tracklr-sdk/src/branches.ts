@@ -12,10 +12,17 @@ export interface Branch {
 export class BranchesModule {
   constructor(private http: HttpClient) {}
 
-  public async list(): Promise<Branch[]> {
+  public async list(): Promise<Branch[] & { branches: Branch[]; results: Branch[]; success?: boolean; [key: string]: any }> {
     const res = await this.http.get<any>('business/branches/');
-    if (Array.isArray(res)) return res;
-    return res?.results || res?.branches || [];
+    const list: Branch[] = Array.isArray(res) ? [...res] : [...(res?.results || res?.branches || [])];
+    const augmented: any = [...list];
+    if (res && typeof res === 'object' && !Array.isArray(res)) {
+      Object.assign(augmented, res);
+    }
+    augmented.branches = list;
+    augmented.results = list;
+    augmented.success = res?.success ?? true;
+    return augmented;
   }
 
   public async getOverview(): Promise<any> {

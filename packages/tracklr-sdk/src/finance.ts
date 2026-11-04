@@ -95,11 +95,11 @@ export class FinanceModule {
   }
 
   public async getExpenseCategories(): Promise<any> {
-    return await this.http.get<any>('business/expense-categories/');
+    return await this.http.get<any>('business/expenses/categories/');
   }
 
   public async createExpenseCategory(data: Record<string, unknown>): Promise<any> {
-    return await this.http.post<any>('business/expense-categories/', data);
+    return await this.http.post<any>('business/expenses/categories/', data);
   }
 
   public async getProfitAnalysis(params: Record<string, unknown> = {}): Promise<any> {
@@ -155,11 +155,13 @@ export class FinanceModule {
     return await this.http.get<any>(`business/finance/profit-loss/${qs ? `?${qs}` : ''}`);
   }
 
-  public async getExpenseSummary(options?: { branchId?: number | string; period?: string } | number | string): Promise<any> {
+  public async getExpenseSummary(options?: { branchId?: number | string; period?: string; start_date?: string; end_date?: string } | number | string): Promise<any> {
     if (typeof options === 'object' && options !== null) {
       const query = new URLSearchParams();
       if (options.branchId && options.branchId !== 'all') query.append('branch_id', String(options.branchId));
       if (options.period) query.append('period', options.period);
+      if (options.start_date) query.append('start_date', options.start_date);
+      if (options.end_date) query.append('end_date', options.end_date);
       const qs = query.toString();
       return await this.http.get<any>(`business/expenses/summary/${qs ? `?${qs}` : ''}`);
     }

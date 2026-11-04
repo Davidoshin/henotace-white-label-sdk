@@ -312,8 +312,16 @@ export class ServicesModule {
     return await this.http.get<any>('business/service-settings/');
   }
 
+  public async getServiceSettings(): Promise<any> {
+    return this.getSettings();
+  }
+
   public async updateSettings(data: Record<string, unknown>): Promise<any> {
     return await this.http.put<any>('business/service-settings/', data);
+  }
+
+  public async updateServiceSettings(data: Record<string, unknown>): Promise<any> {
+    return this.updateSettings(data);
   }
 
   public async getTestimonials(): Promise<any> {

@@ -194,3 +194,45 @@ export interface WasteRecord {
   date_recorded: string;
   [key: string]: unknown;
 }
+
+export interface BranchStockItem {
+  id: number | string;
+  branch_id: number | string;
+  branch_name: string;
+  product_id: number | string;
+  product_name: string;
+  product_sku?: string;
+  category_name?: string;
+  current_stock: number;
+  min_stock_level: number;
+  cost_price?: number;
+  selling_price?: number;
+  unit_value?: number;
+  valuation_basis?: 'cost_price' | 'selling_price' | string;
+  total_value?: number;
+  is_low_stock?: boolean;
+  last_restocked?: string | null;
+  last_sale_date?: string | null;
+  [key: string]: unknown;
+}
+
+export interface StoreStockItem {
+  id: number | string;
+  product_id: number | string;
+  product_name: string;
+  product_sku?: string;
+  category_name?: string;
+  current_stock: number;
+  min_stock_level: number;
+  max_stock_level?: number | null;
+  unit?: string;
+  cost_price?: number;
+  selling_price?: number;
+  unit_value?: number;
+  valuation_basis?: 'cost_price' | 'selling_price' | string;
+  total_value?: number;
+  is_low_stock?: boolean;
+  last_restock_date?: string | null;
+  [key: string]: unknown;
+}
+
